@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Profil</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    scroll-behavior: smooth;
+  }
+  /* Loading screen */
+  #loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #1a1a2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    z-index: 99999;
+  }
+  /* Sticky Navigation */
+  nav {
+    position: sticky;
+    top: 0;
+    background: #16213e;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid #764ba2;
+    z-index: 1000;
+  }
+  nav a {
+    color: #ffe45e;
+    margin: 0 15px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #fff;
+  }
+  .container {
+    max-width: 900px;
+    background: #1a1a2e;
+    margin: 30px auto 60px;
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.6);
+    overflow: hidden;
+    padding: 40px;
+  }
+  header {
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 3em;
+    letter-spacing: 2px;
+  }
+  .profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid #764ba2;
+    object-fit: cover;
+    margin: 20px auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .profile-img:hover {
+    transform: scale(1.1);
+  }
+  section {
+    margin-bottom: 50px;
+  }
+  h2 {
+    font-weight: 600;
+    border-bottom: 2px solid #764ba2;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    font-size: 1.8em;
+  }
+  p, ul {
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+  ul li {
+    background: #33355a;
+    margin-bottom: 12px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  ul li:hover {
+    background: #764ba2;
+  }
+  .portfolio-item {
+    background: #292b5c;
+    margin-bottom: 20px;
+    padding: 18px 22px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    transition: background 0.3s ease;
+  }
+  .portfolio-item:hover {
+    background: #764ba2;
+  }
+  .portfolio-item a {
+    color: #ffe45e;
+    font-weight: 600;
+    font-size: 1.1em;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .portfolio-item a:hover {
+    text-decoration: underline;
+  }
+  form {
+    background: #292b5c;
+    padding: 20px;
+    border-radius: 15px;
+  }
+  form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 15px;
+    resize: vertical;
+  }
+  form button {
+    background: #764ba2;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  form button:hover {
+    background: #5650a5;
+  }
+  /* Testimonial */
+  .testimonial {
+    background: #33355a;
+    padding: 20px;
+    border-radius: 15px;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .testimonial strong {
+    display: block;
+    margin-top: 12px;
+    font-weight: 700;
+    font-style: normal;
+    text-align: right;
+  }
+  /* Scroll To Top */
+  #scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #764ba2;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 15px 18px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 0 10px rgba(118,75,162,0.7);
+    z-index: 1000;
+  }
+  #scrollTopBtn:hover {
+    background: #9a72d0;
+  }
+  @media (max-width: 650px) {
+    .container {
+      margin: 20px 15px 60px;
+      padding: 20px;
+    }
+    header h1 {
+      font-size: 2.2em;
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="loading">Loading...</div>
+
+<nav>
+  <a href="#about">Tentang</a>
+  <a href="#skills">Keahlian</a>
+  <a href="#portfolio">Portofolio</a>
+  <a href="#testimonials">Testimonial</a>
+  <a href="#contact">Kontak</a>
+</nav>
+
+<div class="container">
+  <header>
+    <h1>Taqin</h1>
+    <img src="abdul.jpg" alt="Foto Profil" class="profile-img" />
+  </header>
+
+  <section id="about">
+    <h2>Tentang Saya</h2>
+    <p>Saya adalah pengembang web kreatif dengan passion dalam menciptakan pengalaman digital yang menarik dan fungsional menggunakan teknologi modern.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Keahlian</h2>
+    <ul>
+      <li><button onclick="showDetail('html')">HTML5, CSS3, JavaScript ES6+</button></li>
+      <li><button onclick="showDetail('frameworks')">React, Vue, Angular</button></li>
+      <li><button onclick="showDetail('design')">Desain UI/UX & Grafik</button></li>
+      <li><button onclick="showDetail('backend')">Backend API dengan Node.js dan Express</button></li>
+      <li><button onclick="showDetail('mobile')">Pengembangan Aplikasi Mobile dengan React Native</button></li>
+    </ul>
+    <div id="skillDetail" style="margin-top:20px; padding:10px; background:#33355a; border-radius:8px; color:#ffe45e;"></div>
+  </section>
+
+  <section id="portfolio">
+    <h2>Portofolio</h2>
+    <div class="portfolio-item">
+      <a href="https://contohproyek1.com" target="_blank" rel="noopener noreferrer">Situs Web Perusahaan Modern</a>
+      <p>Website interaktif dengan fitur e-commerce dan dashboard admin.</p>
+    </div>
+    <div class="portfolio-item">
+      <a href="https://contohproyek2.com" target="_blank" rel="noopener noreferrer">Aplikasi Manajemen Proyek</a>
+      <p>Aplikasi skalabel untuk membantu tim mengelola proyek secara efisien.</p>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>Testimonial</h2>
+    <div class="testimonial">
+      "Kerja sama dengannya sangat profesional dan hasilnya melebihi ekspektasi." 
+      <strong>- Client A</strong>
+    </div>
+    <div class="testimonial">
+      "Sangat komunikatif, tepat waktu, dan hasil karyanya sangat memuaskan." 
+      <strong>- Client B</strong>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Kontak</h2>
+    <form onsubmit="handleSubmit(event)">
+      <label for="name">Nama</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Pesan</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <button type="submit">Kirim</button>
+    </form>
+  </section>
+</div>
+
+<button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+
+<script>
+  // Loading screen hide
+  window.addEventListener('load', () => {
+    document.getElementById('loading').style.display = 'none';
+  });
+
+  // Show keahlian detail interactive
+  function showDetail(skillKey) {
+    const details = {
+      html: "Dasar web development dengan HTML5, CSS3, dan JavaScript modern.",
+      frameworks: "Framework JavaScript seperti React, Vue, Angular membangun UI interaktif.",
+      design: "Desain UI/UX & Grafik menciptakan tampilan menarik dan intuitif.",
+      backend: "Backend API dengan Node.js dan Express untuk layanan server cepat.",
+      mobile: "Pengembangan Mobile dengan React Native membuat aplikasi multiplatform."
+    };
+    const detailDiv = document.getElementById('skillDetail');
+    detailDiv.style.display = 'block';
+    detailDiv.textContent = details[skillKey] || "Detail tidak tersedia.";
+  }
+
+  // Scroll to Top button visibility and function
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  window.onscroll = function() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Simple contact form handler (demo only)
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert('Terima kasih sudah mengirim pesan. Saya akan segera menghubungi Anda.');
+    e.target.reset();
+  }
+</script>
+</body>
+</html>
